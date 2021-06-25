@@ -18,7 +18,18 @@
         }   </style>
 </head>
 <body>
-<label for="cat">Wybierz kategorię wydatku którą chcesz wyświetlić</label>
+Wydajesz {{ procent_zarob }}% tego ile zarobiłeś
+<br>
+Na jedzenie przeznaczasz {{ suma_food }}zł stanowi {{ p1 }}% twoich wydatków
+<br>
+Na życie przeznaczasz {{ suma_live }}zł stanowi {{ p2 }}% twoich wydatków
+<br>
+Na usługi przeznaczasz {{ suma_serv }}zł stanowi {{ p3 }}% twoich wydatków
+<br>
+Na oszczędności przeznaczasz {{ suma_steal }}zł stanowi {{ p4 }}% twoich wydatków
+<br>
+<br>
+<label for="cat">Wybierz kategorię wydatku którą chcesz rozwinąć</label>
     <form method="POST">
             <select name="spendType" id="cat">
                 <option value="food">Jedzenie</option>
@@ -33,7 +44,6 @@
      <tr><td><b>{{i}}</b></td></tr>
     {% endfor %}
 </table>
-
     {% if suma_db %}
         <p>Wydajesz na to aż:</p>
     {{ suma_db }}

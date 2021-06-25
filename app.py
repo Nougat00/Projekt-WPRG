@@ -35,7 +35,7 @@ def hello_world():
 
 @app.route('/choice', methods=('GET', 'POST'))
 def choice():
-    return render_template('choice.html')
+    return render_template('choice.html', user=session['user_name'])
 
 
 @app.route('/costs', methods=('GET', 'POST'))
@@ -63,20 +63,44 @@ def salary():
 
 @app.route('/sumary', methods=('GET', 'POST'))
 def sumary():
+
     tmp = []
     suma = 0
-    procent=0
+    salary=0
+    foodvalue=0
+    livevalue=0
+    servicesvalue=0
+    stealvalue=0
+
+    from_user = query_db("Select salary from table_name")
+    food = query_db("Select value from costs where id_user=? and categry=?", (session['id_user'], 'food'))
+    live = query_db("Select value from costs where id_user=? and categry=?", (session['id_user'], 'live'))
+    services = query_db("Select value from costs where id_user=? and categry=?", (session['id_user'], 'services'))
+    steal = query_db("Select value from costs where id_user=? and categry=?", (session['id_user'], 'steal'))
+
+    for x in from_user:
+        salary = sum(x)
+    for x in food:
+        foodvalue=sum(x)
+    for x in live:
+        livevalue=sum(x)
+    for x in services:
+        servicesvalue=sum(x)
+    for x in steal:
+        stealvalue=sum(x)
+    suma=foodvalue+livevalue+servicesvalue+stealvalue
+    procentfood=round(((float(foodvalue)/float(suma))*100), 2)
+    procentlive=round(((float(livevalue)/float(suma))*100), 2)
+    procentservices=round(((float(servicesvalue)/float(suma))*100), 2)
+    procentsteal=round(((float(stealvalue)/float(suma))*100), 2)
+    salary_pro=round(((float(suma)/float(salary))*100),2)
     if request.method == 'POST':
         spend_type = request.form['spendType']
         from_costs = query_db("Select name, value from costs where id_user=? and categry=?", (session['id_user'], spend_type))
         for x in from_costs:
             tmp.append(x)
             suma+=x[1]
-        from_user= query_db("Select salary from table_name")
-        for x in from_user:
-            procent=sum(x)
-        procent=round(((float(suma)/float(procent))*100),2)
-    return render_template('sumary.html', result_db=tmp, suma_db=suma, procent_kw=procent)
+    return render_template('sumary.html', zarobki=salary, procent_zarob=salary_pro,  result_db=tmp, suma_food=foodvalue, suma_live=livevalue, suma_serv=servicesvalue, suma_steal=stealvalue, p1=procentfood, p2=procentlive, p3=procentservices, p4=procentsteal)
 
 @app.route('/register', methods=('GET', 'POST'))
 def register():
