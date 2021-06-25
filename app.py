@@ -121,6 +121,7 @@ def register():
 
 @app.route('/login', methods=('GET', 'POST'))
 def login():
+    mess=""
     if request.method == 'POST':
         session.pop('user_name', None)
         user_name = request.form['username']
@@ -131,7 +132,9 @@ def login():
             session['user_name'] = from_db[0][1]
             session['timestamp'] =datetime.datetime.now()
             return redirect(url_for('choice'))
-    return render_template('login.html')
+        else:
+            mess="Zły login lub hasło"
+    return render_template('login.html', message=mess)
 
 
 if __name__ == '__main__':
