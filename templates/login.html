@@ -2,9 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login page</title>
-        <meta charset="UTF-8">
-    <title>BudgetHelper</title>
+    <title>Budger Helper</title>
     <style>
         a:link, a:visited {
             background-color: #f44336;
@@ -20,8 +18,8 @@
         }   </style>
 </head>
 <body>
-      <h1>Login</h1>
-      <h1>Witaj w BudgetHelperze mordo!</h1>
+      <h2>Witaj w BudgetHelperze mordo!</h2>
+      <h3>Zaloguj się!</h3>
       <form method="POST">
         <div class="txt_field">
             <label>Username</label>
@@ -33,6 +31,7 @@
         </div>
         <input type="submit" name="foo" value="Login">
       </form>
+      <a href="{{ url_for('register')}}">Zarejestruj się!</a>
     </div>
 </body>
 </html>

@@ -64,7 +64,6 @@ def salary():
 @app.route('/sumary', methods=('GET', 'POST'))
 def sumary():
     tmp = []
-    tmp_2=[]
     suma = 0
     procent=0
     if request.method == 'POST':
@@ -79,6 +78,22 @@ def sumary():
         procent=round(((float(suma)/float(procent))*100),2)
     return render_template('sumary.html', result_db=tmp, suma_db=suma, procent_kw=procent)
 
+@app.route('/register', methods=('GET', 'POST'))
+def register():
+    mess=""
+    if request.method == 'POST':
+        user_name = request.form['username']
+        user_password = request.form['password']
+        database = get_db()
+        from_db = query_db("Select id_user, login, password from table_name where login=?", (user_name,))
+        if from_db and from_db[0][1] == user_name:
+            mess="Użytkownik o takim loginie już istnieje! Wybierz inny login"
+        else:
+            new_spend = database.execute("Insert into table_name(login, password) values (?,?)",(user_name, user_password))
+            database.commit()
+            new_spend.close()
+            mess="O dziwo udało ci się zarejestrować. Gratulacje!"
+    return render_template('register.html', text=mess)
 
 @app.route('/login', methods=('GET', 'POST'))
 def login():
