@@ -81,13 +81,13 @@ def sumary():
     for x in from_user:
         salary = sum(x)
     for x in food:
-        foodvalue=sum(x)
+        foodvalue+=sum(x)
     for x in live:
-        livevalue=sum(x)
+        livevalue+=sum(x)
     for x in services:
-        servicesvalue=sum(x)
+        servicesvalue+=sum(x)
     for x in steal:
-        stealvalue=sum(x)
+        stealvalue+=sum(x)
     suma=foodvalue+livevalue+servicesvalue+stealvalue
     procentfood=round(((float(foodvalue)/float(suma))*100), 2)
     procentlive=round(((float(livevalue)/float(suma))*100), 2)
