@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BudgetHelper</title>
+        <meta charset="UTF-8">
+    <title>BudgetHelper</title>
+    <style>
+        a:link, a:visited {
+            background-color: #f44336;
+            color: white;
+            padding: 14px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        a:hover, a:active {
+            background-color: red;
+        }   </style>
+</head>
+<body>
+    <form method="POST">
+        <label>Podaj kwotę wydatku</label>
+        <input type="number" name="salaryValue">
+        <input type="submit" name="foo" value="Dodaj">
+    </form>
+<a href="{{ url_for('choice') }}">Wstecz</a>
+<a href="{{ url_for('login') }}">Wyloguj</a>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BudgetHelper</title>
+    <style>
+        a:link, a:visited {
+            background-color: #f44336;
+            color: white;
+            padding: 14px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        a:hover, a:active {
+            background-color: red;
+        }   </style>
+</head>
+<body>
+<label for="cat">Wybierz kategorię wydatku którą chcesz wyświetlić</label>
+    <form method="POST">
+            <select name="spendType" id="cat">
+                <option value="food">Jedzenie</option>
+                <option value="live">Koszty życia</option>
+                <option value="services">Usługi</option>
+                <option value="steal">Oszczędności</option>
+            </select>
+        <input type="submit" name="foo" value="Pokaż">
+    </form>
+<table>
+    {% for i in result_db %}
+       <tr><td>{{i}}</td></tr>
+    {% endfor %}
+</table>
+
+    {% if suma_db %}
+        <p>Wydajesz na to aż:</p>
+    {{ suma_db }}
+        <p>Co stanowi: </p>
+        {{ procent_kw }}
+        % Twojej wypłaty
+    {% endif %}
+<br>
+<a href="{{ url_for('choice') }}">Wstecz</a>
+<a href="{{ url_for('login') }}">Wyloguj</a>
+</body>
+</html>

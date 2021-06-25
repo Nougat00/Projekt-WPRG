@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BudgetHelper</title>
+     <style>
+        a:link, a:visited {
+            background-color: #f44336;
+            color: white;
+            padding: 14px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        a:hover, a:active {
+            background-color: red;
+        }   </style>
+</head>
+<body>
+      <form method="POST">
+        <div class="txt_field">
+            <label>Podaj nazwę wydatku</label>
+          <input type="text" name="spendName">
+        </div>
+        <label for="cat">Wybierz kategorię wydatku</label>
+        <select name="spendType" id="cat">
+            <option value="food">Jedzenie</option>
+            <option value="live">Koszty życia (np. Wynajem mieszkania, leki itd.)</option>
+            <option value="services">Usługi (np. Internet , Netflix)</option>
+            <option value="steal">Oszczędności</option>
+        </select>
+          <label>Podaj kwotę wydatku</label>
+          <input type="number" name="spendValue">
+        <input type="submit" name="foo" value="Dodaj">
+      </form>
+    </div>
+<a href="{{ url_for('choice') }}">Wstecz</a>
+<a href="{{ url_for('login') }}">Wyloguj</a>
+</body>
+</html>
